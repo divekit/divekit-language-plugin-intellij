@@ -1,0 +1,55 @@
+<idea-plugin>
+    <id>thkoeln.archilab.divekit</id>
+    <name>Divekit</name>
+    <vendor email="Marco.Marienhagen@smail.th-koeln.de" url="">TH Köln</vendor>
+
+    <description>
+        <![CDATA[
+
+        This plugin provides an autocomplete feature for the Divekit-Tool from the TH Köln – University of Applied Sciences.
+        <br/>
+        <br/>
+        It can be used by any one who wants to create individualizable programming exercises with the placeholder variable system.
+        <br/>
+        <br/>
+        The plugin helps reducing the time required to develop an exercise.
+        This works by parsing the defined config files and generating the variables resulting from them. The variables will
+        then be provided to the IntelliJ editor by a Microsoft Language Server using the Language Server Protocol.
+        <br/>
+        Further documentation to the Divekit-Tool can be found here: <a href="https://www.archi-lab.io/display/public/Divekit.">https://www.archi-lab.io/display/public/Divekit.</a>
+        <br/>
+        <br/>
+        The Language Server JAR file needs to be provided separately, and the path to it must be defined in the settings.
+
+        ]]>
+    </description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <completion.contributor implementationClass="org.wso2.lsp4intellij.contributors.LSPCompletionContributor"
+                                id="LSPCompletionContributor" language="any" />
+
+        <applicationService serviceImplementation="thkoeln.archilab.DivekitLanguagePlugin.config.DivekitSettingsState"/>
+
+        <postStartupActivity implementation="thkoeln.archilab.DivekitLanguagePlugin.DivekitStartupActivity" id="DivekitStartupActivity"/>
+
+        <applicationConfigurable parentId="tools" instance="thkoeln.archilab.DivekitLanguagePlugin.config.DivekitSettingsConfigurable"
+                                 id="thkoeln.archilab.DivekitLanguagePlugin.config.DivekitSettingsConfigurable"
+                                 displayName="Divekit: Settings" />
+
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+
+    <application-components>
+        <component>
+            <implementation-class>org.wso2.lsp4intellij.IntellijLanguageClient</implementation-class>
+        </component>
+    </application-components>
+</idea-plugin>

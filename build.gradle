@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij' version '0.7.2'
+}
+
+group 'thkoeln.archilab'
+version '1.02'
+
+repositories {
+    mavenCentral()
+    maven {url 'https://jitpack.io'}
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '3.8.2'
+    implementation 'com.github.ballerina-platform:lsp4intellij:0.94.2'
+}
+
+intellij {
+    version '2019.3'
+}
+patchPluginXml {
+    changeNotes """
+      <ul> <li> Changed intellij version to 2019.3 </li> </ul"""
+}
