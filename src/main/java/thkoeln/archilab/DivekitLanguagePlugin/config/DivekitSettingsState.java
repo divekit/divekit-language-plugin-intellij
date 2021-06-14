@@ -8,7 +8,6 @@ import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-//TODO - add configurable path to config json's
 @State(
         name = "thkoeln.archilab.DivekitLanguagePlugin.config.DivekitSettingsState",
         storages = {@Storage("DivekitSettings.xml")}
@@ -16,6 +15,10 @@ import org.jetbrains.annotations.Nullable;
 public class DivekitSettingsState implements PersistentStateComponent<DivekitSettingsState> {
 
     public String pathToJar = "";
+
+    public String pathToVariationsConfig = "";
+
+    public String pathToVariableExtensionsConfig = "";
 
     public static DivekitSettingsState getInstance() {
         return ServiceManager.getService(DivekitSettingsState.class);

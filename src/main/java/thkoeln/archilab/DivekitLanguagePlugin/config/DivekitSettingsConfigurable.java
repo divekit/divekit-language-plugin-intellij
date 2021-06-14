@@ -31,7 +31,9 @@ public class DivekitSettingsConfigurable implements Configurable {
     @Override
     public boolean isModified() {
         DivekitSettingsState settingsState = DivekitSettingsState.getInstance();
-        boolean modified = !settingsComponent.getJarPathText().equals(settingsState.pathToJar);
+        boolean modified = (!settingsComponent.getJarPathText().equals(settingsState.pathToJar) ||
+                            !settingsComponent.getVariationsConfigPathText().equals(settingsState.pathToVariationsConfig) ||
+                            !settingsComponent.getVariableExtensionsConfigPathText().equals(settingsState.pathToVariableExtensionsConfig));
         return modified;
     }
 
@@ -39,12 +41,16 @@ public class DivekitSettingsConfigurable implements Configurable {
     public void apply() {
         DivekitSettingsState settings = DivekitSettingsState.getInstance();
         settings.pathToJar = settingsComponent.getJarPathText();
+        settings.pathToVariationsConfig = settingsComponent.getVariationsConfigPathText();
+        settings.pathToVariableExtensionsConfig = settingsComponent.getVariableExtensionsConfigPathText();
     }
 
     @Override
     public void reset() {
         DivekitSettingsState settings = DivekitSettingsState.getInstance();
         settingsComponent.setJarPathText(settings.pathToJar);
+        settingsComponent.setVariationsConfigPathText(settings.pathToVariationsConfig);
+        settingsComponent.setVariableExtensionsConfigPath(settings.pathToVariableExtensionsConfig);
     }
 
     @Override

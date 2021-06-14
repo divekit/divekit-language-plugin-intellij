@@ -16,7 +16,7 @@
         This works by parsing the defined config files and generating the variables resulting from them. The variables will
         then be provided to the IntelliJ editor by a Microsoft Language Server using the Language Server Protocol.
         <br/>
-        Further documentation to the Divekit-Tool can be found here: <a href="https://www.archi-lab.io/display/public/Divekit.">https://www.archi-lab.io/display/public/Divekit.</a>
+        Further documentation to the Divekit-Tool can be found here: <a href="https://www.archi-lab.io/display/public/Divekit">Divekit.</a>
         <br/>
         <br/>
         The Language Server JAR file needs to be provided separately, and the path to it must be defined in the settings.
@@ -33,9 +33,9 @@
         <completion.contributor implementationClass="org.wso2.lsp4intellij.contributors.LSPCompletionContributor"
                                 id="LSPCompletionContributor" language="any" />
 
-        <applicationService serviceImplementation="thkoeln.archilab.DivekitLanguagePlugin.config.DivekitSettingsState"/>
-
         <postStartupActivity implementation="thkoeln.archilab.DivekitLanguagePlugin.DivekitStartupActivity" id="DivekitStartupActivity"/>
+
+        <applicationService serviceImplementation="thkoeln.archilab.DivekitLanguagePlugin.config.DivekitSettingsState"/>
 
         <applicationConfigurable parentId="tools" instance="thkoeln.archilab.DivekitLanguagePlugin.config.DivekitSettingsConfigurable"
                                  id="thkoeln.archilab.DivekitLanguagePlugin.config.DivekitSettingsConfigurable"

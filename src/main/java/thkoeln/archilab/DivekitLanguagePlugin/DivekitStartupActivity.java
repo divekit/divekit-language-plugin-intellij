@@ -22,16 +22,32 @@ public class DivekitStartupActivity implements StartupActivity {
     @Override
     public void runActivity(@NotNull Project project) {
 
-        String pathToVariationsConfig = "/config/variationsConfig.json";
-        String pathToExtensionsConfig = "/config/variableExtensionsConfig.json";
+        String pathToVariationsConfig = "";
+        String pathToExtensionsConfig = "";
 
-        String basePath = project.getBasePath();
+        File variationsConfig;
+        File extensionsConfig;
 
-        String projectPathToVariationsConfig = basePath.concat(pathToVariationsConfig);
-        String projectPathToExtensionsConfig = basePath.concat(pathToExtensionsConfig);
+        if(!DivekitSettingsState.getInstance().pathToVariationsConfig.isEmpty() &&
+                !DivekitSettingsState.getInstance().pathToVariableExtensionsConfig.isEmpty()) {
+            pathToVariationsConfig = DivekitSettingsState.getInstance().pathToVariationsConfig;
+            pathToExtensionsConfig = DivekitSettingsState.getInstance().pathToVariableExtensionsConfig;
 
-        File variationsConfig = new File(projectPathToVariationsConfig);
-        File extensionsConfig = new File(projectPathToExtensionsConfig);
+            variationsConfig = new File(pathToVariationsConfig);
+            extensionsConfig = new File(pathToExtensionsConfig);
+        } else {
+            //default case
+            pathToVariationsConfig = "/config/variationsConfig.json";
+            pathToExtensionsConfig = "/config/variableExtensionsConfig.json";
+
+            String basePath = project.getBasePath();
+
+            String projectPathToVariationsConfig = basePath.concat(pathToVariationsConfig);
+            String projectPathToExtensionsConfig = basePath.concat(pathToExtensionsConfig);
+
+            variationsConfig = new File(projectPathToVariationsConfig);
+            extensionsConfig = new File(projectPathToExtensionsConfig);
+        }
 
         if (variationsConfig.exists() && extensionsConfig.exists() && !DivekitSettingsState.getInstance().pathToJar.isEmpty()) {
 
@@ -39,16 +55,11 @@ public class DivekitStartupActivity implements StartupActivity {
 
             Notifications.Bus.notify(notification);
 
-            /*
-            TODO - Replace with jar from maven and buildPath String?
-             */
-            String serverJarLocation = basePath.concat("/DivekitLanguageServer-0.95-jar-with-dependencies.jar");
-
-            serverJarLocation = DivekitSettingsState.getInstance().pathToJar;
+            String serverJarLocation = DivekitSettingsState.getInstance().pathToJar;
 
             String[] command = new String[]{"java", "-jar",
                     serverJarLocation,
-                    projectPathToVariationsConfig, projectPathToExtensionsConfig};
+                    variationsConfig.getAbsolutePath(), extensionsConfig.getAbsolutePath()};
 
             IntellijLanguageClient.addServerDefinition(new RawCommandServerDefinition("md,java", command), project);
         }

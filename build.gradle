@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'thkoeln.archilab'
-version '1.02'
+version '1.03'
 
 repositories {
     mavenCentral()
@@ -21,5 +21,5 @@ intellij {
 }
 patchPluginXml {
     changeNotes """
-      <ul> <li> Changed intellij version to 2019.3 </li> </ul"""
+      <ul> <li> Updated description </li> <li> Added path to config-files in the settings </li></ul"""
 }
