@@ -28,7 +28,7 @@ und wieder geöffnet werden. Wenn unten rechts die Meldung erscheint, dass der L
   
 ## Weiterentwicklung & Anpassungen
 
-* Fehler können auf GitHub zuerst unter der [Issues](https://github.com/divekit/divekit-language-plugin-intellij/issues) eingetragen werden
+* Probleme & Fehler können auf GitHub zuerst unter der [Issues](https://github.com/divekit/divekit-language-plugin-intellij/issues) eingetragen werden
 und anschließend von da abgearbeitet werden. 
   
 * Vor dem Mergen empfiehlt sich in der Regel ein Pull-Request, da so die Code-Qualität hoch gehalten werden kann.
@@ -42,3 +42,6 @@ IntelliJ Instanz mit installiertem Plugin zum schnellen Testen der Funktionalit�
 * Der [DivekitCodeCompletionTest](https://github.com/divekit/divekit-language-plugin-intellij/blob/master/src/test/java/DivekitCodeCompletionTest.java)
 testet die Funktionalität des Plugins in Zusammenspiel mit dem Divekit-Language-Server. Wenn der Test erfolgreich ist, funktioniert die Code Completion
   wie erwartet. Der Test ist im Code ausführlich durch Kommentare beschrieben.
+  
+* Um den Test lokal laufen zu lassen muss in [Zeile 163](https://github.com/divekit/divekit-language-plugin-intellij/blob/ebe71b9a3120f6552e836e7d4c753061a6618f8d/src/test/java/DivekitCodeCompletionTest.java#L163)
+  der absolute Pfad zur Divekit Language Server JAR-Datei eingetragen werden.
