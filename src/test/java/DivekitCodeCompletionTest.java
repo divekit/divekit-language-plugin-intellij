@@ -151,8 +151,10 @@ public class DivekitCodeCompletionTest extends BasePlatformTestCase {
         will be provided by the Divekit Language Server if everything works as supposed
          */
         ArrayList<String> expectedCompletionItems = new ArrayList<>(Arrays.asList("$Vehicle$", "$Vehicle_Attr_Built$", "$Vehicle_Attr_BuiltType$", "$Vehicle_Attr_BuiltValue$",
-                "$Vehicle_Attr_Power$", "$Vehicle_Attr_PowerType$", "$Vehicle_Attr_PowerValue$", "$VehicleClass$",
-                "$VehicleClassPath$", "$VehicleGetToMany$", "$VehicleGetToOne$"));
+                "$Vehicle_Attr_Power$", "$Vehicle_Attr_PowerType$", "$Vehicle_Attr_PowerValue$", "$VehicleClass$", "$VehicleClassPath$", "$VehicleGetToMany$", "$VehicleGetToOne$", "$vehicle$",
+                "$vehicle_Attr_Built$", "$vehicle_attr_built$", "$vehicle_Attr_BuiltType$", "$vehicle_attr_builttype$", "$vehicle_Attr_BuiltValue$", "$vehicle_attr_builtvalue$", "$vehicle_Attr_Power$",
+                "$vehicle_attr_power$", "$vehicle_Attr_PowerType$", "$vehicle_attr_powertype$", "$vehicle_Attr_PowerValue$", "$vehicle_attr_powervalue$", "$vehicleClass$", "$vehicleclass$", "$vehicleClassPath$",
+                "$vehicleclasspath$", "$vehicleGetToMany$", "$vehiclegettomany$", "$vehicleGetToOne$", "$vehiclegettoone$"));
 
         /*
         Path to jar must be hard coded for test, if not provided by build path...
@@ -160,7 +162,7 @@ public class DivekitCodeCompletionTest extends BasePlatformTestCase {
 //        String serverJarPath = DivekitSettingsState.getInstance().pathToJar;
 
         String[] command = new String[]{"java", "-jar",
-                "C:/Users/Marco/IdeaProjects/automated-repo-setup/DivekitLanguageServer-0.95-jar-with-dependencies.jar",
+                "C:/Users/Marco/IdeaProjects/automated-repo-setup/DivekitLanguageServer-1-jar-with-dependencies.jar",
                 variationsPath.toString(), extensionsPath.toString()};
 
         RawCommandServerDefinition definition = new RawCommandServerDefinition("md, java", command);

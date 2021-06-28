@@ -3,6 +3,7 @@ package thkoeln.archilab.DivekitLanguagePlugin;
 import com.intellij.notification.*;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.startup.StartupActivity;
+import com.sun.xml.bind.v2.runtime.output.SAXOutput;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,24 +31,17 @@ public class DivekitStartupActivity implements StartupActivity {
 
         if(!DivekitSettingsState.getInstance().pathToVariationsConfig.isEmpty() &&
                 !DivekitSettingsState.getInstance().pathToVariableExtensionsConfig.isEmpty()) {
-            pathToVariationsConfig = DivekitSettingsState.getInstance().pathToVariationsConfig;
-            pathToExtensionsConfig = DivekitSettingsState.getInstance().pathToVariableExtensionsConfig;
+            pathToVariationsConfig = DivekitSettingsState.getInstance().pathToVariationsConfig + ".json";
+            pathToExtensionsConfig = DivekitSettingsState.getInstance().pathToVariableExtensionsConfig + ".json";
 
-            variationsConfig = new File(pathToVariationsConfig);
-            extensionsConfig = new File(pathToExtensionsConfig);
         } else {
             //default case
-            pathToVariationsConfig = "/config/variationsConfig.json";
-            pathToExtensionsConfig = "/config/variableExtensionsConfig.json";
+            pathToVariationsConfig = getPathToConfigFile("variationsConfig.json", new File(project.getBasePath()));
+            pathToExtensionsConfig = getPathToConfigFile("variableExtensionsConfig.json", new File(project.getBasePath()));
 
-            String basePath = project.getBasePath();
-
-            String projectPathToVariationsConfig = basePath.concat(pathToVariationsConfig);
-            String projectPathToExtensionsConfig = basePath.concat(pathToExtensionsConfig);
-
-            variationsConfig = new File(projectPathToVariationsConfig);
-            extensionsConfig = new File(projectPathToExtensionsConfig);
         }
+        variationsConfig = new File(pathToVariationsConfig);
+        extensionsConfig = new File(pathToExtensionsConfig);
 
         if (variationsConfig.exists() && extensionsConfig.exists() && !DivekitSettingsState.getInstance().pathToJar.isEmpty()) {
 
@@ -58,10 +52,31 @@ public class DivekitStartupActivity implements StartupActivity {
             String serverJarLocation = DivekitSettingsState.getInstance().pathToJar;
 
             String[] command = new String[]{"java", "-jar",
-                    serverJarLocation,
+                    serverJarLocation + ".jar",
                     variationsConfig.getAbsolutePath(), extensionsConfig.getAbsolutePath()};
 
             IntellijLanguageClient.addServerDefinition(new RawCommandServerDefinition("md,java", command), project);
         }
+    }
+
+    private String getPathToConfigFile(String fileName, File dir) {
+        File[] list = dir.listFiles();
+
+        String pathToFile = "";
+
+        if(list != null) {
+            for(File file : list) {
+                if(pathToFile.isEmpty()){
+                    if(file.isDirectory()) {
+                        pathToFile = getPathToConfigFile(fileName, file);
+                    } else if (fileName.equalsIgnoreCase(file.getName())) {
+                        System.out.println(file.getAbsolutePath());
+
+                        pathToFile = file.getAbsolutePath();
+                    }
+                }
+            }
+        }
+        return pathToFile;
     }
 }

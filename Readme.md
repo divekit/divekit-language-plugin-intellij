@@ -16,10 +16,10 @@ Nach der Installation sind noch folgende Schritte erforderlich:
 
 * Divekit Language Server JAR muss auf dem lokalen Dateisystem vorhanden sein.
 
-* Der absolute Pfad zur JAR muss in den Einstellungen unter Tools -> Divekit: Settings eingetragen werden.
+* Der absolute Pfad zur JAR muss in den Einstellungen(STRG + ALT + S) unter Tools -> Divekit: Settings eingetragen werden.
 
 * Optional kann noch der absolute Pfad zu den Dateien `variationsConfig.json` und `variableExtensionsConfig.json` in den Einstellungen
-eingetragen werden. Sind diese Felder leer, wird von dem Project-root aus im /config/ Verzeichniss nach den Dateien geschaut.
+eingetragen werden. Sind diese Felder leer, wird das Projekt vom Root-Folder aus nach den Dateien durchsucht.
   Achtung: Das Plugin startet den Language Server nur, wenn die beiden Config-Dateien gefunden werden.
   
 * Anschließend kann das Projekt `automated-repo-setup` gestartet werden. Wenn es vorher schon geöffnet war, muss es einmal geschlossen 
