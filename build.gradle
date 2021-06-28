@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'thkoeln.archilab'
-version '1.03'
+version '1.05'
 
 repositories {
     mavenCentral()
@@ -21,5 +21,5 @@ intellij {
 }
 patchPluginXml {
     changeNotes """
-      <ul> <li> Updated description </li> <li> Added path to config-files in the settings </li></ul"""
+      <ul> <li> User no longer needs to add file extensions to paths in settings </li> <li> Plugin now scans project for config files </li></ul"""
 }

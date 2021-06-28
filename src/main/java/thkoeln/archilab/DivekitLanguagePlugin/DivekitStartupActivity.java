@@ -70,8 +70,6 @@ public class DivekitStartupActivity implements StartupActivity {
                     if(file.isDirectory()) {
                         pathToFile = getPathToConfigFile(fileName, file);
                     } else if (fileName.equalsIgnoreCase(file.getName())) {
-                        System.out.println(file.getAbsolutePath());
-
                         pathToFile = file.getAbsolutePath();
                     }
                 }
