@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>thkoeln.archilab.divekit</id>
     <name>Divekit</name>
-    <vendor email="Marco.Marienhagen@smail.th-koeln.de" url="">TH Köln</vendor>
+    <vendor email="Marco.Marienhagen@smail.th-koeln.de" url="">ArchiLab</vendor>
 
     <description>
         <![CDATA[
@@ -16,7 +16,10 @@
         This works by parsing the defined config files and generating the variables resulting from them. The variables will
         then be provided to the IntelliJ editor by a Microsoft Language Server using the Language Server Protocol.
         <br/>
-        Further documentation to the Divekit-Tool can be found here: <a href="https://www.archi-lab.io/display/public/Divekit">Divekit.</a>
+        <br/>
+        A detailed user guide can be found here: <a href="https://github.com/divekit/divekit-language-plugin-intellij">Divekit IntelliJ Plugin Repository</a>.
+        <br/>
+        Further documentation to the Divekit-Tool can be found here: <a href="https://www.archi-lab.io/display/public/Divekit">Divekit</a>.
         <br/>
         <br/>
         The Language Server JAR file needs to be provided separately, and the path to it must be defined in the settings.

@@ -14,7 +14,7 @@ Das Plugin ist für die Nutzung im Projekt [automated-repo-setup](https://github
 
 Nach der Installation sind noch folgende Schritte erforderlich: 
 
-* Divekit Language Server JAR muss auf dem lokalen Dateisystem vorhanden sein.
+* Divekit Language Server JAR muss auf dem lokalen Dateisystem vorhanden sein. Dies kann durch clonen des [Language Server Repositorys](https://github.com/divekit/divekit-language-server) und anschließendes bauen der JAR mit `mvn package` erreicht werden.
 
 * Der absolute Pfad zur JAR muss in den Einstellungen(STRG + ALT + S) unter Tools -> Divekit: Settings eingetragen werden.
 
